@@ -1,0 +1,40 @@
+/**************/
+/* 外部リソース */
+/**************/
+
+.card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  text-align: center;
+  border: 1px solid #e0e0e0;
+}
+
+.card__icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.card__title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: #111111;
+}
+
+.card__text {
+  font-size: 0.95rem;
+  color: #666666;
+  line-height: 1.6;
+}
+
+body main section div a.btn-primary {
+  background-color: #222222;
+  color: #ffffff;
+  padding: 12px 30px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 20px !important;
+}

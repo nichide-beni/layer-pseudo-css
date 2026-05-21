@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Nature - 山と清流の記憶</title>
+  <!-- 外部リセットCSSをレイヤー「reset」で読み込む（疑似的に公開CDNを使用） -->
+  <link rel="stylesheet" href="https://unpkg.com" layer="reset">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- メインビジュアル -->
+  <header class="main-visual">
+    <img src="img/kv.jpg" alt="雄大な滝の景色" class="mv-image">
+    <div class="mv-container">
+      <h1 class="mv-title">山と旅路の記憶</h1>
+      <p class="mv-lead">自然が紡ぐ、圧倒的な美しさと静寂に触れる旅。</p>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="content-wrapper">
+
+    <!-- セクション1：紹介文（:has / :where / :is 検証用） -->
+    <section class="intro-section">
+      <div class="intro-card status-alert">
+        <span class="badge badge-important">重要なお知らせ</span>
+        <h2 class="intro-title">現在の登山道状況について</h2>
+        <p class="intro-text">大雨の影響により、一部の清流ルートが通行止めとなっています。事前に情報をご確認ください。</p>
+      </div>
+
+      <div class="intro-card">
+        <span class="badge badge-normal">コラム</span>
+        <h2 class="intro-title">四季が織りなす山の表情</h2>
+        <p class="intro-text">春の芽吹き、夏の深緑、秋の紅葉、冬の銀世界。山は毎日違う姿を私たちに見せてくれます。</p>
+      </div>
+    </section>
+
+    <!-- セクション2：Bento UI ギャラリー -->
+    <section class="gallery-section">
+      <h2 class="section-title">アクティビティー</h2>
+      
+      <div class="bento-grid">
+        <figure class="bento-item item-moss">
+          <img src="img/mos.jpg" alt="緑豊かな深森の苔">
+          <figcaption>深森の苔</figcaption>
+        </figure>
+        <figure class="bento-item item-pebble">
+          <img src="img/top.jpg" alt="山頂にかかる雲">
+          <figcaption>山頂の景色</figcaption>
+        </figure>
+        <figure class="bento-item item-main-river">
+          <img src="img/brook.jpg" alt="山間を激しく流れる清流の全景">
+          <figcaption>渓谷の清流</figcaption>
+        </figure>
+        <figure class="bento-item item-creek">
+          <img src="img/stream.jpg" alt="木漏れ日が差し込む静かな小川">
+          <figcaption>静かな小川</figcaption>
+        </figure>
+        <figure class="bento-item item-valley">
+          <img src="img/peaks.jpg" alt="霧が立ち込める壮大な谷嶺">
+          <figcaption>霧の谷嶺</figcaption>
+        </figure>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Deep Nature Project.</p>
+  </footer>
+
+</body>
+</html>

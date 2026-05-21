@@ -1,0 +1,153 @@
+:root {
+  --bg-color: #f5f7fa;
+  --text-color: #2d3436;
+  --card-bg: #ffffff;
+  --accent-color: #0984e3;
+}
+
+/* :hasは後述, IDで特定のチェックボックスを指定 */
+:root:has(#theme-toggle:checked) {
+  --bg-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --card-bg: #2d2d2d;
+  --accent-color: #74b9ff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  margin: 0;
+  padding: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ベースの.cardを上書き */
+.card {
+  padding: 3rem;
+}
+/* whereの結果の詳細度はないため後で記述したpaddingでも詳細度が下 */
+:where(.card) {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-top: 2rem;
+}
+
+/* --- スイッチのデザイン --- */
+.theme-switch-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.theme-checkbox {
+  display: none;
+}
+
+.theme-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  background: #dfe6e9;
+  padding: 6px 12px;
+  border-radius: 50px;
+  position: relative;
+}
+
+.switch-ui {
+  width: 40px;
+  height: 20px;
+  background: #b2bec3;
+  border-radius: 20px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.switch-ui::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+.label-text {
+  font-size: 0.85rem;
+  font-weight: bold;
+  opacity: 0.5;
+}
+
+:root:has(#theme-toggle:checked) .switch-ui {
+  background: var(--accent-color);
+}
+
+:root:has(#theme-toggle:checked) .switch-ui::before {
+  transform: translateX(20px);
+}
+
+:root:not(:has(#theme-toggle:checked)) .light-text,
+:root:has(#theme-toggle:checked) .dark-text {
+  opacity: 1;
+  color: var(--accent-color);
+}
+
+.main-title {
+  width: fit-content;
+  margin-inline: auto;
+  margin-bottom: 3rem;
+}
+
+/* フォーム部品 */
+.contact-form {
+  max-width: 400px;
+  margin: 2rem auto;
+  font-family: sans-serif;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+
+/* =============================================
+   :is() を使った状態管理
+   ============================================= */
+
+.form-group :is(input, textarea):is(:focus, :active) {
+  border-color: #add8e6;
+  background-color: #f0f8ff;
+  box-shadow: 0 0 8px #add8e6;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

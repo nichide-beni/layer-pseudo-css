@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:is, :whereによる条件をまとめた擬似要素</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <div class="main-title">
+      <h1>:is, :whereによる条件をまとめた擬似要素</h1>
+    </div>
+
+    <div class="container">
+      <!-- テーマ切り替えスイッチ -->
+      <div class="theme-switch-wrapper">
+        <input type="checkbox" id="theme-toggle" class="theme-checkbox">
+        <label for="theme-toggle" class="theme-label">
+          <span class="label-text light-text">Light</span>
+          <div class="switch-ui"></div>
+          <span class="label-text dark-text">Dark</span>
+        </label>
+      </div>
+
+      <!-- コンテンツエリア -->
+      <div class="content">
+        <h1>Modern Theme Switch</h1>
+        <p>このページはCSSの <code>:has()</code> と <code>:where()</code> を利用してテーマを管理しています。</p>
+        <div class="card">
+          <h2>カードタイトル</h2>
+          <ul>
+            <li>テーマを切り替えると、変数によって色が滑らかに変化します。</li>
+            <li>フォームの要素が選択されると青く強調して表示されます。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+    <form class="contact-form">
+      <div class="form-group">
+        <label for="name">名前</label>
+        <input type="text" id="name" name="name" placeholder="山田 太郎">
+      </div>
+
+      <div class="form-group">
+        <label for="kana">ふりがな</label>
+        <input type="text" id="kana" name="kana" placeholder="やまだ たろう">
+      </div>
+
+      <div class="form-group">
+        <label for="email">メールアドレス</label>
+        <input type="email" id="email" name="email" placeholder="example@mail.com">
+      </div>
+
+      <div class="form-group">
+        <label for="message">問い合わせ内容</label>
+        <textarea id="message" name="message" rows="5" placeholder="こちらにご記入ください"></textarea>
+      </div>
+
+      <button type="submit">送信する</button>
+    </form>
+  </main>
+</body>
+</html>

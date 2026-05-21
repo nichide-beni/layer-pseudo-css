@@ -1,0 +1,124 @@
+/* -----------------------------------------
+ * 1. レイヤーの優先順位を「宣言順」で定義
+ * 左にあるほど弱く、右にあるほど強い（base < library < theme < utilities）
+ * ----------------------------------------- */
+@layer base, library, theme, utilities;
+
+/* -----------------------------------------
+ * 2. 外部CSSを「library」レイヤーとしてインポート
+ * ----------------------------------------- */
+@import url('lib.css') layer(library);
+
+/* -----------------------------------------
+ * 3. 各レイヤーの実装
+ * ----------------------------------------- */
+
+/* --- baseレイヤー（サイト全体の初期化） --- */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8fafc;
+    color: #334155;
+  }
+}
+
+/* --- themeレイヤー（サイクリングサイトの独自デザイン） --- */
+@layer theme {
+  /* ヘッダー */
+  .header {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 20px 0;
+  }
+  .header__inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #0f172a;
+    letter-spacing: 1px;
+  }
+  .nav__link {
+    color: #475569;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 600;
+  }
+
+  .hero {
+    background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), 
+                url('https://unsplash.com') center/cover no-repeat;
+    padding: 100px 20px;
+    text-align: center;
+    color: #ffffff;
+  }
+  .hero__title {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+  }
+  .hero__text {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+  }
+
+  /* 
+   * 【★レイヤーでの上書き】
+   * ライブラリ側でより強い詳細度で書かれていても、themeの方がレイヤー順位が上のため、シンプルな「.btn-primary」で上書き可能
+   */
+  .btn-primary {
+    background-color: #0284c7;
+    background-color: #38bdf8;
+    color: #0f172a;
+    border-radius: 50px;
+    transition: transform 0.2s;
+    /* @see https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@layer */
+    font-size: 16px !important; /* importantはルールが逆転。レイヤー外に書く必要がある。 */
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+  }
+
+  .features {
+    padding: 60px 20px;
+  }
+  .features__inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
+
+  .card {
+    border: none;
+    background: #ffffff;
+    border-top: 4px solid #38bdf8; /* 上部にアクセントライン */
+  }
+}
+
+@layer utilities {
+}
+
+/* --- レイヤー外（アンレイヤード） --- */
+/* レイヤーに属さないスタイルは、すべてのレイヤー（utilities含む）よりも「強力」になる */
+/* よって、外部ライブラリなどをCDNで読み込むと負けやすい点に注意が必要 */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #0f172a;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
