@@ -9,7 +9,7 @@
 /* ==========================================
    2. base レイヤー（全体設計・変数）
    ========================================== */
-/* TODO: レイヤーを定義 */ {
+@layer base {
   html {
     font-size: 62.5%;
   }
@@ -26,8 +26,12 @@
     --color-alert: #a33b3b;
   }
 
+  /* PCサイズでの変数上書き */
   @media (min-width: 1024px) {
-    /* TODO: 変数を上書き */
+    :root {
+      --inline-pad: 3rem;
+      --body-font: 1.6rem; /* 16px */
+    }
   }
 
   body {
@@ -52,7 +56,7 @@
 /* ==========================================
    3. contents レイヤー（レイアウト・パーツ）
    ========================================== */
-/* TODO: レイヤーを定義 */ {
+@layer contents {
 
   /* --- メインビジュアル（全画面・object-fit） --- */
   .main-visual {
@@ -118,12 +122,13 @@
     transition: transform 0.3s;
   }
 
-  .intro-card:hover {
-    /* :TODO: is() を使った複数要素のホバー同時制御 */
+  /* :is() を使った複数要素のホバー同時制御 */
+  .intro-card:hover :is(.intro-title, .intro-text) {
+    color: #4a7c59;
   }
 
   /* :where() を使った詳細度0のバッジ初期スタリング */
-  :where(/* TODO: ここに対象のクラス */) {
+  :where(.badge) {
     display: inline-block;
     padding: 0.4rem 1.2rem;
     font-size: 1.2rem;
@@ -136,16 +141,20 @@
 
   /* 通常セレクタ（クラス1つ）で詳細度0の初期スタイルを容易に上書き */
   .badge-important {
-    /* TODO: デザインに合わせて色を設定 */
+    background-color: var(--color-alert);
     color: #ffffff;
   }
   .badge-normal {
-    /* TODO: デザインに合わせて色を設定 */
+    background-color: var(--color-primary);
     color: #ffffff;
   }
 
-  /* TODO: 完全記入問題。:has() を使用した親要素の逆引き制御 */
+  /* :has() を使用した親要素の逆引き制御 */
   /* 「重要なお知らせ」バッジを持つカードのみ枠線と背景を警告色に変化 */
+  .intro-card:has(.badge-important) {
+    border-color: var(--color-alert);
+    background-color: #fffaf0;
+  }
 
   .intro-title {
     font-size: 2.2rem;
@@ -167,17 +176,31 @@
   .bento-grid {
     display: grid;
     gap: 1.5rem;
-    /* TODO: SP版グリッド配置：2列構成 */
-    /* エリア名: mass, pebble, creek, valley, main */
+    /* SP版グリッド配置：2列構成 */
+    grid-template-areas:
+      "moss pebble"
+      "creek valley"
+      "main main";
     grid-template-columns: 1fr 1fr;
   }
 
   /* PC版グリッド配置：4列構成への変更とエリアの再配置 */
-  /* TODO: PCgrid */
   @media (min-width: 1024px) {
+    .bento-grid {
+      grid-template-areas:
+        "moss pebble main main"
+        "creek valley main main";
+      grid-template-columns: 1fr 1fr 2fr 2fr;
+    }
   }
 
-  /* TODO: 完全記入課題, 各アイテムへのエリア割り当て */
+  /* 各アイテムへのエリア割り当て */
+  .item-moss { grid-area: moss; }
+  .item-pebble { grid-area: pebble; }
+  .item-main-river { grid-area: main; }
+  /* creekとvalleyはSPで2行目、PCで一番下の行（3行目相当の位置）から持ってくる動きを再現 */
+  .item-creek { grid-area: creek; }
+  .item-valley { grid-area: valley; }
 
   /* Bentoアイテムの装飾 */
   .bento-item {
@@ -200,7 +223,9 @@
     transition: transform 0.5s;
   }
 
-  /* TODO: 完全記入問題。bentoの画像をホバーした時に5%拡大 */
+  .bento-item:hover img {
+    transform: scale(1.05);
+  }
 
   .bento-item figcaption {
     position: absolute;
@@ -214,7 +239,9 @@
 
   /* --- フッター --- */
   .footer {
+    text-align: center;
     padding: 4rem var(--inline-pad);
-    /* TODO: 背景色は変数で、残りをデザインに合わせて調整 */
+    background-color: var(--color-primary);
+    color: #ffffff;
   }
 }
