@@ -24,6 +24,7 @@
     --color-text: #2d352d;
     --color-primary: #1e3a1e;
     --color-alert: #a33b3b;
+    --color-card-hover: #4a7c59; /* 問題で使います。変数名に着目して考えよう。 */
   }
 
   @media (min-width: 1024px) {
@@ -123,7 +124,7 @@
   }
 
   /* :where() を使った詳細度0のバッジ初期スタリング */
-  :where(/* TODO: ここに対象のクラス */) {
+  :where(/* TODO: ここに対象のクラス、バッジ部分のテキストスタイルが有効になる */) {
     display: inline-block;
     padding: 0.4rem 1.2rem;
     font-size: 1.2rem;
@@ -136,11 +137,11 @@
 
   /* 通常セレクタ（クラス1つ）で詳細度0の初期スタイルを容易に上書き */
   .badge-important {
-    /* TODO: デザインに合わせて色を設定 */
+    /* TODO: デザインに合わせて背景色を設定 */
     color: #ffffff;
   }
   .badge-normal {
-    /* TODO: デザインに合わせて色を設定 */
+    /* TODO: デザインに合わせて背景色を設定 */
     color: #ffffff;
   }
 
