@@ -24,6 +24,7 @@
     --color-text: #2d352d;
     --color-primary: #1e3a1e;
     --color-alert: #a33b3b;
+    --color-card-hover: #4a7c59; /* 問題で使います。変数名に着目して考えよう。 */
   }
 
   /* PCサイズでの変数上書き */
@@ -124,7 +125,7 @@
 
   /* :is() を使った複数要素のホバー同時制御 */
   .intro-card:hover :is(.intro-title, .intro-text) {
-    color: #4a7c59;
+    color: var(--color-card-hover);
   }
 
   /* :where() を使った詳細度0のバッジ初期スタリング */
